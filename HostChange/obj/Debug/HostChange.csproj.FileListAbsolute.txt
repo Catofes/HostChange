@@ -1,0 +1,9 @@
+e:\mydocuments\visual studio 2012\Projects\HostChange\HostChange\bin\Debug\HostChange.exe.config
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Debug\HostChange.csprojResolveAssemblyReference.cache
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Debug\HostChange.HostChange.resources
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Debug\HostChange.Properties.Resources.resources
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Debug\HostChange.csproj.GenerateResource.Cache
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\bin\Debug\HostChange.exe
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\bin\Debug\HostChange.pdb
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Debug\HostChange.exe
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Debug\HostChange.pdb

@@ -1,0 +1,8 @@
+E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\bin\Release\HostChange.exe.config
+E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\bin\Release\HostChange.exe
+E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\bin\Release\HostChange.pdb
+E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.HostChange.resources
+E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.Properties.Resources.resources
+E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.csproj.GenerateResource.Cache
+E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.exe
+E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.pdb
