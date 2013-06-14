@@ -33,6 +33,7 @@
             this.Beijing = new System.Windows.Forms.Button();
             this.US = new System.Windows.Forms.Button();
             this.label = new System.Windows.Forms.Label();
+            this.Version = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Update
@@ -84,20 +85,30 @@
             this.label.TabIndex = 4;
             this.label.Text = "Welcome!";
             // 
+            // Version
+            // 
+            this.Version.AutoSize = true;
+            this.Version.Location = new System.Drawing.Point(1, 85);
+            this.Version.Name = "Version";
+            this.Version.Size = new System.Drawing.Size(47, 12);
+            this.Version.TabIndex = 5;
+            this.Version.Text = "Host Version:";
+            // 
             // HostChange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(228, 83);
+            this.ClientSize = new System.Drawing.Size(228, 103);
+            this.Controls.Add(this.Version);
             this.Controls.Add(this.label);
             this.Controls.Add(this.US);
             this.Controls.Add(this.Beijing);
             this.Controls.Add(this.Reset);
             this.Controls.Add(this.Update);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(244, 122);
+            this.MaximumSize = new System.Drawing.Size(244, 142);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(244, 122);
+            this.MinimumSize = new System.Drawing.Size(244, 142);
             this.Name = "HostChange";
             this.Text = "HostChange";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -113,6 +124,7 @@
         private System.Windows.Forms.Button Beijing;
         private System.Windows.Forms.Button US;
         private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Label Version;
     }
 }
 

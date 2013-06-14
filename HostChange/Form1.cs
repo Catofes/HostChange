@@ -22,6 +22,7 @@ namespace HostChange
         {
             maincore = new MainCore();
             InitializeComponent();
+            Version.Text = maincore.data.SmartHost_Beijing[0];
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -34,12 +35,14 @@ namespace HostChange
             label.Text = "Waite.";
             maincore.GetHostfromSmarthost();
             label.Text = "Update OK.";
+            Version.Text = maincore.data.SmartHost_Beijing[0];
         }
 
         private void Beijing_Click(object sender, EventArgs e)
         {
             maincore.SaveLocalHost(maincore.data.SmartHost_Beijing);
-            label.Text = "Set OK.";
+            label.Text = "Beijing Set OK.";
+            Version.Text = maincore.data.SmartHost_Beijing[0];
         }
 
         private void Reset_Click(object sender, EventArgs e)
@@ -47,14 +50,17 @@ namespace HostChange
             List<string> resetdata= new List<string>();
             resetdata.Add("127.0.0.1    localhost");
             maincore.SaveLocalHost(resetdata);
-            label.Text = "Set OK.";
+            label.Text = "Reset OK.";
+            Version.Text = maincore.data.SmartHost_Beijing[0];
         }
 
         private void US_Click(object sender, EventArgs e)
         {
             maincore.SaveLocalHost(maincore.data.SmartHost_US);
-            label.Text = "Set OK.";
+            label.Text = "US Set OK.";
+            Version.Text = maincore.data.SmartHost_Beijing[0];
         }
+
     }
     [Serializable]
     class Data

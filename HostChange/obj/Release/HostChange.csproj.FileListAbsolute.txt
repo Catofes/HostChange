@@ -6,3 +6,4 @@ E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\Hos
 E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.csproj.GenerateResource.Cache
 E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.exe
 E:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.pdb
+e:\mydocuments\visual studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.csprojResolveAssemblyReference.cache
