@@ -22,7 +22,14 @@ namespace HostChange
         {
             maincore = new MainCore();
             InitializeComponent();
-            Version.Text = maincore.data.SmartHost_Beijing[0];
+            if (maincore.data.SmartHost_Beijing.Count() != 0)
+            {
+                Version.Text = maincore.data.SmartHost_Beijing[0];
+            }
+            else
+            {
+                Version.Text = "No Data , Please Update";
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
