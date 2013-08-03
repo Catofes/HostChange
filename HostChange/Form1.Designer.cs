@@ -34,11 +34,13 @@
             this.US = new System.Windows.Forms.Button();
             this.label = new System.Windows.Forms.Label();
             this.Version = new System.Windows.Forms.Label();
+            this.Imouto = new System.Windows.Forms.Button();
+            this.showversion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Update
             // 
-            this.Update.Location = new System.Drawing.Point(38, 13);
+            this.Update.Location = new System.Drawing.Point(3, 13);
             this.Update.Name = "Update";
             this.Update.Size = new System.Drawing.Size(75, 23);
             this.Update.TabIndex = 0;
@@ -48,7 +50,7 @@
             // 
             // Reset
             // 
-            this.Reset.Location = new System.Drawing.Point(38, 43);
+            this.Reset.Location = new System.Drawing.Point(3, 43);
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(75, 23);
             this.Reset.TabIndex = 1;
@@ -58,7 +60,7 @@
             // 
             // Beijing
             // 
-            this.Beijing.Location = new System.Drawing.Point(119, 13);
+            this.Beijing.Location = new System.Drawing.Point(84, 14);
             this.Beijing.Name = "Beijing";
             this.Beijing.Size = new System.Drawing.Size(75, 23);
             this.Beijing.TabIndex = 2;
@@ -68,7 +70,7 @@
             // 
             // US
             // 
-            this.US.Location = new System.Drawing.Point(119, 43);
+            this.US.Location = new System.Drawing.Point(84, 43);
             this.US.Name = "US";
             this.US.Size = new System.Drawing.Size(75, 23);
             this.US.TabIndex = 3;
@@ -79,7 +81,7 @@
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(1, 69);
+            this.label.Location = new System.Drawing.Point(1, 79);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(53, 12);
             this.label.TabIndex = 4;
@@ -88,17 +90,39 @@
             // Version
             // 
             this.Version.AutoSize = true;
-            this.Version.Location = new System.Drawing.Point(1, 85);
+            this.Version.Location = new System.Drawing.Point(1, 100);
             this.Version.Name = "Version";
-            this.Version.Size = new System.Drawing.Size(47, 12);
+            this.Version.Size = new System.Drawing.Size(83, 12);
             this.Version.TabIndex = 5;
             this.Version.Text = "Host Version:";
+            // 
+            // Imouto
+            // 
+            this.Imouto.Location = new System.Drawing.Point(165, 14);
+            this.Imouto.Name = "Imouto";
+            this.Imouto.Size = new System.Drawing.Size(75, 23);
+            this.Imouto.TabIndex = 6;
+            this.Imouto.Text = "Imouto";
+            this.Imouto.UseVisualStyleBackColor = true;
+            this.Imouto.Click += new System.EventHandler(this.Imouto_Click);
+            // 
+            // showversion
+            // 
+            this.showversion.Location = new System.Drawing.Point(165, 43);
+            this.showversion.Name = "showversion";
+            this.showversion.Size = new System.Drawing.Size(75, 23);
+            this.showversion.TabIndex = 7;
+            this.showversion.Text = "Version";
+            this.showversion.UseVisualStyleBackColor = true;
+            this.showversion.Click += new System.EventHandler(this.showversion_Click);
             // 
             // HostChange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(228, 103);
+            this.ClientSize = new System.Drawing.Size(244, 121);
+            this.Controls.Add(this.showversion);
+            this.Controls.Add(this.Imouto);
             this.Controls.Add(this.Version);
             this.Controls.Add(this.label);
             this.Controls.Add(this.US);
@@ -106,9 +130,9 @@
             this.Controls.Add(this.Reset);
             this.Controls.Add(this.Update);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(244, 142);
+            this.MaximumSize = new System.Drawing.Size(260, 160);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(244, 142);
+            this.MinimumSize = new System.Drawing.Size(260, 160);
             this.Name = "HostChange";
             this.Text = "HostChange";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -125,6 +149,8 @@
         private System.Windows.Forms.Button US;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label Version;
+        private System.Windows.Forms.Button Imouto;
+        private System.Windows.Forms.Button showversion;
     }
 }
 

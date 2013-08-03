@@ -17,7 +17,7 @@ namespace HostChange
 {
     public partial class HostChange : Form
     {
-        MainCore maincore;
+        public MainCore maincore;
         public HostChange()
         {
             maincore = new MainCore();
@@ -42,14 +42,14 @@ namespace HostChange
             label.Text = "Waite.";
             maincore.GetHostfromSmarthost();
             label.Text = "Update OK.";
-            Version.Text = maincore.data.SmartHost_Beijing[0];
+            Version.Text = "Beijing Update Time: " + maincore.data.SmartHost_Beijing[0].Substring(8);
         }
 
         private void Beijing_Click(object sender, EventArgs e)
         {
             maincore.SaveLocalHost(maincore.data.SmartHost_Beijing);
             label.Text = "Beijing Set OK.";
-            Version.Text = maincore.data.SmartHost_Beijing[0];
+            Version.Text = "Beijing Update Time: " + maincore.data.SmartHost_Beijing[0].Substring(8);
         }
 
         private void Reset_Click(object sender, EventArgs e)
@@ -58,33 +58,56 @@ namespace HostChange
             resetdata.Add("127.0.0.1    localhost");
             maincore.SaveLocalHost(resetdata);
             label.Text = "Reset OK.";
-            Version.Text = maincore.data.SmartHost_Beijing[0];
+            Version.Text = "Beijing Update Time: " + maincore.data.SmartHost_Beijing[0].Substring(8);
         }
 
         private void US_Click(object sender, EventArgs e)
         {
             maincore.SaveLocalHost(maincore.data.SmartHost_US);
             label.Text = "US Set OK.";
-            Version.Text = maincore.data.SmartHost_Beijing[0];
+            Version.Text = "US Update Time: " + maincore.data.SmartHost_US[0].Substring(8);
         }
 
+        private void Imouto_Click(object sender, EventArgs e)
+        {
+            maincore.SaveLocalHost(maincore.data.imouto_host);
+            label.Text = "Imouto Set OK.";
+            Version.Text = "Imouto Update Time: " + maincore.data.imouto_host[5].Substring(18);
+        }
+
+        private void showversion_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+        }
     }
     [Serializable]
-    class Data
+    public class Data
     {
         public List<string> SmartHost_Beijing;//SmartHost which Service located in beijing
         public List<string> SmartHost_US;//SmartHost which Service located in Others
-        public List<string> Other;//Didn't used now
+        public List<string> imouto_host;//Didn't used now
+        public int data_version;
         public Data()
         {
             SmartHost_Beijing = new List<string>();
             SmartHost_US = new List<string>();
-            Other = new List<string>();
+            imouto_host = new List<string>();
+            data_version = 1;
+        }
+        public bool Reset()
+        {
+            SmartHost_Beijing = new List<string>();
+            SmartHost_US = new List<string>();
+            imouto_host = new List<string>();
+            data_version = 1;
+            return true;
         }
     }
-    class MainCore
+    public class MainCore
     {
         public Data data;
+        private int data_version;
         private List<string> Host;
         private string datafile;
         public MainCore()
@@ -95,6 +118,7 @@ namespace HostChange
         {
             data = new Data();
             Host = new List<string>();
+            data_version = 1;
             datafile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\HostChange\\HostChange.data";
             LoadLocalData();
         }
@@ -157,6 +181,10 @@ namespace HostChange
         }
         public void GetHostfromSmarthost()
         {
+            if (data.data_version != data_version)
+            {
+                data.Reset();
+            }
             try
             {
                 WebClient GetHost = new WebClient();
@@ -169,6 +197,10 @@ namespace HostChange
                 string pageHtml2 = Encoding.Default.GetString(PageData2);
                 data.SmartHost_US.Clear();
                 data.SmartHost_US = new List<string>(pageHtml2.Split('\n'));
+                Byte[] PageData3 = GetHost.DownloadData("https://imoutohost.googlecode.com/git/imouto.host.txt");
+                string pageHtml3 = Encoding.Default.GetString(PageData3);
+                data.imouto_host.Clear();
+                data.imouto_host = new List<string>(pageHtml3.Split('\n'));
             }
             catch (WebException)
             {
@@ -193,6 +225,11 @@ namespace HostChange
             }
             catch (SerializationException)
             {
+                MessageBox.Show("Please delete all file in %AppData%\\HostChange\\ to reset the local data");
+            }
+            if (data.data_version != data_version)
+            {
+                MessageBox.Show("date_file error. Please Update the host file");
             }
 
         }//Load

@@ -7,3 +7,4 @@ e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\bin\Debug\HostC
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\bin\Debug\HostChange.pdb
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Debug\HostChange.exe
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Debug\HostChange.pdb
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Debug\HostChange.Form2.resources
