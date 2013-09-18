@@ -40,7 +40,7 @@ namespace HostChange
         private void Update_Click(object sender, EventArgs e)
         {
             label.Text = "Waite.";
-            maincore.GetHostfromSmarthost();
+            maincore.GetHost();
             label.Text = "Update OK.";
             Version.Text = "Beijing Update Time: " + maincore.data.SmartHost_Beijing[0].Substring(8);
         }
@@ -80,31 +80,43 @@ namespace HostChange
             Form2 form2 = new Form2();
             form2.Show();
         }
+
+        private void ninehost_Click(object sender, EventArgs e)
+        {
+            maincore.SaveLocalHost(maincore.data.ninehost);
+            label.Text = "9host Set OK.";
+            Version.Text = "9host Update Time: " + maincore.data.ninehost[0].Substring(8);
+        }
     }
     [Serializable]
     public class Data
     {
         public List<string> SmartHost_Beijing;//SmartHost which Service located in beijing
         public List<string> SmartHost_US;//SmartHost which Service located in Others
-        public List<string> imouto_host;//Didn't used now
+        public List<string> imouto_host;//Imouto.host
+        public List<string> ninehost;//9host
+        public List<string> backup_1;//no use now
+        public List<string> backup_2;//no use now
         public int data_version;
-        public Data()
+        public Data()//初始化
         {
             SmartHost_Beijing = new List<string>();
             SmartHost_US = new List<string>();
             imouto_host = new List<string>();
-            data_version = 1;
+            ninehost = new List<string>();
+            data_version = 2;
         }
-        public bool Reset()
+        public bool Reset()//重置
         {
             SmartHost_Beijing = new List<string>();
             SmartHost_US = new List<string>();
             imouto_host = new List<string>();
-            data_version = 1;
+            ninehost = new List<string>();
+            data_version = 2;
             return true;
         }
     }
-    public class MainCore
+    public class MainCore//核心~
     {
         public Data data;
         private int data_version;
@@ -118,11 +130,11 @@ namespace HostChange
         {
             data = new Data();
             Host = new List<string>();
-            data_version = 1;
+            data_version = 2;
             datafile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\HostChange\\HostChange.data";
             LoadLocalData();
-        }
-        public void LoadLocalHost()//Load the local host file
+        }//初始化
+        public void LoadLocalHost()//Load the local host file, no use now
         {
             Host.Clear();//Clean the Host List 
             try
@@ -179,7 +191,7 @@ namespace HostChange
                 MessageBox.Show("File Access is Denied. Check if you are runing program by Administrator");
             }
         }
-        public void GetHostfromSmarthost()
+        public void GetHost()
         {
             if (data.data_version != data_version)
             {
@@ -201,14 +213,18 @@ namespace HostChange
                 string pageHtml3 = Encoding.Default.GetString(PageData3);
                 data.imouto_host.Clear();
                 data.imouto_host = new List<string>(pageHtml3.Split('\n'));
+                Byte[] PageData4 = GetHost.DownloadData("http://moe9.tk/Xction/9Hosts/Static/Win");
+                string pageHtml4 = Encoding.Default.GetString(PageData4);
+                data.ninehost.Clear();
+                data.ninehost = new List<string>(pageHtml4.Split('\n'));
             }
             catch (WebException)
             {
-                MessageBox.Show("Download Error");
+                MessageBox.Show("Download Error,Check your network or Update the Software.");
             }
             SaveLocalData();
         }//Download Host Data from SmartHost
-        public void LoadLocalData()
+        public void LoadLocalData()//Load data from local file 
         {
             try
             {
@@ -229,7 +245,7 @@ namespace HostChange
             }
             if (data.data_version != data_version)
             {
-                MessageBox.Show("date_file error. Please Update the host file");
+                MessageBox.Show("date_file version error. Please Update the host file");
             }
 
         }//Load

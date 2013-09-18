@@ -36,6 +36,7 @@
             this.Version = new System.Windows.Forms.Label();
             this.Imouto = new System.Windows.Forms.Button();
             this.showversion = new System.Windows.Forms.Button();
+            this.ninehost = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Update
@@ -81,7 +82,7 @@
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(1, 79);
+            this.label.Location = new System.Drawing.Point(5, 82);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(53, 12);
             this.label.TabIndex = 4;
@@ -90,7 +91,7 @@
             // Version
             // 
             this.Version.AutoSize = true;
-            this.Version.Location = new System.Drawing.Point(1, 100);
+            this.Version.Location = new System.Drawing.Point(6, 103);
             this.Version.Name = "Version";
             this.Version.Size = new System.Drawing.Size(83, 12);
             this.Version.TabIndex = 5;
@@ -108,19 +109,30 @@
             // 
             // showversion
             // 
-            this.showversion.Location = new System.Drawing.Point(165, 43);
+            this.showversion.Location = new System.Drawing.Point(165, 73);
             this.showversion.Name = "showversion";
             this.showversion.Size = new System.Drawing.Size(75, 23);
             this.showversion.TabIndex = 7;
-            this.showversion.Text = "Version";
+            this.showversion.Text = "About";
             this.showversion.UseVisualStyleBackColor = true;
             this.showversion.Click += new System.EventHandler(this.showversion_Click);
+            // 
+            // ninehost
+            // 
+            this.ninehost.Location = new System.Drawing.Point(165, 43);
+            this.ninehost.Name = "ninehost";
+            this.ninehost.Size = new System.Drawing.Size(75, 23);
+            this.ninehost.TabIndex = 8;
+            this.ninehost.Text = "9host";
+            this.ninehost.UseVisualStyleBackColor = true;
+            this.ninehost.Click += new System.EventHandler(this.ninehost_Click);
             // 
             // HostChange
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(244, 121);
+            this.Controls.Add(this.ninehost);
             this.Controls.Add(this.showversion);
             this.Controls.Add(this.Imouto);
             this.Controls.Add(this.Version);
@@ -151,6 +163,7 @@
         private System.Windows.Forms.Label Version;
         private System.Windows.Forms.Button Imouto;
         private System.Windows.Forms.Button showversion;
+        private System.Windows.Forms.Button ninehost;
     }
 }
 
