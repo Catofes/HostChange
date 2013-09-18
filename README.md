@@ -7,6 +7,8 @@ Imouto.host (https://code.google.com/p/imoutohost/)
 
 运行需求： 管理员权限，.net4.5 运行库
 
+下载地址：https://github.com/Catofes/HostChange/raw/master/HostChange/bin/Release/HostChange.exe
+
 使用说明： 
 
 	1、点击Update更新Host数据。
@@ -18,6 +20,7 @@ Imouto.host (https://code.google.com/p/imoutohost/)
 	7、点击About显示版本Host信息。
 
 版本：
+
 	1.2.0 加入9host，添加About链接
 	1.1.0 加入Imouto.host 修正更新时间显示
 	1.0.0 初始版本，正常工作。
