@@ -24,7 +24,7 @@ Imouto.host (https://code.google.com/p/imoutohost/)
 
 		make uninstall
 
-使用说明：
+###使用说明：
 
 	[usage]:
 			hostchange update
