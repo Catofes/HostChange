@@ -9,28 +9,24 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <dirent.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "data.h"
+extern "C"
+{
+#include "http_client.h"
+}
 
 using namespace std;
 
-static int dv = 2;
 
-class datafile
-{
-	public:
-		
-		int version;
-		list<string> smarthost_beijing;
-		list<string> smarthost_us;
-		list<string> imoutohost;
-		list<string> ninehost;
-		
-		datafile();
-		~datafile();
-		bool reset();
-};
 //constructor
 datafile::datafile()
 {
+	datapath="/var/local";
+	datapath+="/hostchange/";
+	dataname=datapath+"data";
+	for(int i=0;i<datanumber;i++)length[i]=0;
 	version=dv;
 }
 datafile::~datafile()
@@ -43,53 +39,159 @@ bool datafile::reset()
 	smarthost_us.clear();
 	imoutohost.clear();
 	ninehost.clear();
+	for(int i=0;i<datanumber;i++)length[i]=0;
 	version=dv;
+	return true;
 }
 
-class core {
-	public:
-		datafile thedata;
-		int dataversion;
-		string datapath;
-		
-		core();
-		~core();
-		int savedata();
-		int loaddata();
-		int sethost(list<string>);
-		int update();
-};
-
-core::core()
+int datafile::savefile()
 {
-	dataversion=dv;
-	datapath="/root/.hostchange/data";
-}
-
-int core::savedata()
-{
-	//search the floder
+	/*=========search if the floder exits========*/
 	DIR *dir=NULL;
-	dir = opendir("/root/.hostchange/");
+	dir = opendir(datapath.c_str());
 	if(dir == NULL)
-	{   
-		cout<<"No floder found. Create the floder in /root/.hostchange/"<<endl;
-		mkdir("/root/.hostchange/", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	{
+		clog<<"No floder found. Create the floder in user/share/hostchange/"<<endl;
+		mkdir(datapath.c_str(), S_IRWXU | S_IRWXG |S_IRWXO);
 	}else{
 		closedir(dir);
-	}   
-	fstream file;
-	file.open(datapath.c_str(),ios::binary);
-	if(!file.is_open())cout<<"Error open data file.Check if you run in root/sudo"<<endl;
-	else
-	{
-
-		cout<<"Save Data OK";
 	}
+	/*==========save the data file=============*/
+	ofstream file;
+	file.open(dataname.c_str(),ios::binary);
+	if(!file.is_open())
+	{
+		clog<<"Error open data file.Check if you run in root/sudo"<<endl;
+		exit(2001);
+	}
+	file.write((char*)&version,sizeof(int));
+	for(int i=0;i<datanumber;i++)file.write((char*)&length[i],sizeof(int));
+	file.write(smarthost_us.c_str(),smarthost_us.size());
+	file.write(smarthost_beijing.c_str(),smarthost_beijing.size());
+	file.write(imoutohost.c_str(),imoutohost.size());
+	file.write(ninehost.c_str(),ninehost.size());
+	file.close();
+	cout<<"Save file done"<<endl;
+	return 1;
 }
-
-int main()
+int datafile::loadfile()
 {
+	reset();
+	/*============load data file===========*/
+	ifstream file;
+	file.open(dataname.c_str(),ios::binary);
+	if(!file.is_open())
+	{
+		clog<<"Error load localdatafile. Check if you are runing in root/sudo.If this is your first time to run the program.Please update first."<<endl;;
+		exit(2002);
+	}
+	version=-1;
+	file.read((char*)&version,sizeof(int));
+	if(version!=dv)
+	{
+		clog<<"Error data file version. Please update"<<endl;
+		exit(2003);
+	}
+	for(int i=0;i<datanumber;i++)file.read((char*)&length[i],sizeof(int));
+	int cache=0;
+	for(int i=0;i<datanumber;i++)if(length[i]>cache)cache=length[i];
+	const int bufferlength=cache;
+	char *buffer = new char[bufferlength];
+	file.read(buffer,length[0]);
+	smarthost_us+=buffer;
+	file.read(buffer,length[1]);
+	smarthost_beijing+=buffer;
+	file.read(buffer,length[2]);
+	imoutohost+=buffer;
+	file.read(buffer,length[3]);
+	ninehost+=buffer;
+	file.close();
+	delete buffer;
 	return 0;
 }
 
+int datafile::update()
+{
+	HttpClient *client;
+	client=HttpClient_New();
+	string url;
+	const char *error=new char();
+	/*================Download host===============*/
+	//Smarthost_Beijing
+	url="https://smarthosts.googlecode.com/svn/trunk/hosts";
+	HttpClient_Init(client);
+	HttpClient_Get(client,url.c_str());
+	error=HttpClient_GetError(client);
+	if(error!=0)
+	{
+		clog<<"SmartHost_Beijing Update Error"<<endl;
+		clog<<error<<endl;
+		exit(3001);
+	}
+	else cout<<"SmartHost_Beijing Update OK"<<endl;
+	smarthost_beijing.clear();
+	smarthost_beijing+=HttpClient_ResponseText(client);
+	//Smarthost_US
+	url="https://smarthosts.googlecode.com/svn/trunk/hosts_us";
+	HttpClient_Init(client);
+	HttpClient_Get(client,url.c_str());
+	error=HttpClient_GetError(client);
+	if(error!=0)
+	{   
+		clog<<"SmartHost_Beijing Update Error"<<endl;
+		clog<<error<<endl;
+		exit(3001);
+	}   
+	else cout<<"SmartHost_US Update OK"<<endl;
+	smarthost_us.clear();
+	smarthost_us+=HttpClient_ResponseText(client);
+	//imoutohost
+	url="https://imoutohost.googlecode.com/git/imouto.host.txt";
+	HttpClient_Init(client);
+	HttpClient_Get(client,url.c_str());
+	error=HttpClient_GetError(client);
+	if(error!=0)
+	{   
+		clog<<"SmartHost_Beijing Update Error"<<endl;
+		clog<<error<<endl;
+		exit(3001);
+	}   
+	else cout<<"Imoutohost Update OK"<<endl;
+	imoutohost.clear();
+	imoutohost+=HttpClient_ResponseText(client);
+	//ninehost
+	url="http://moe9.tk/Xction/9Hosts/Static/Linux";
+	HttpClient_Init(client);
+	HttpClient_Get(client,url.c_str());
+	error=HttpClient_GetError(client);
+	if(error!=0)
+	{   
+		clog<<"SmartHost_Beijing Update Error"<<endl;
+		clog<<error<<endl;
+		exit(3001);
+	}   
+	else cout<<"9host Update OK"<<endl;
+	ninehost.clear();
+	ninehost+=HttpClient_ResponseText(client);
+	/*=================================================*/
+	length[0]=smarthost_us.size();
+	length[1]=smarthost_beijing.size();
+	length[2]=imoutohost.size();
+	length[3]=ninehost.size();
+	return 0;
+}
+int datafile::sethosts(string hosts)
+{
+	ofstream file;
+	file.open("/etc/hosts");
+	if(!file.is_open())
+	{
+		clog<<"Error open local hosts file. Check if you are root/sudo"<<endl;
+		exit(4001);
+	}
+	file<<hosts<<endl;
+	file<<"#generate by hostchange"<<endl;
+	file.close();
+	cout<<"Set OK"<<endl;
+	return 0;
+}
