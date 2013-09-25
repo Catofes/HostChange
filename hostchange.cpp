@@ -1,3 +1,6 @@
+/*---------------------------------
+  This file is the main entrance 
+  -------------------------------*/
 #include <iostream>
 #include <cstring>
 #include <stdlib.h>
