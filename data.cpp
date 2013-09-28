@@ -74,23 +74,42 @@ int datafile::savefile()
 	cout<<"Save file done"<<endl;
 	return 1;
 }
-int datafile::loadfile()
+int datafile::checkfile()
 {
-	reset();
 	/*============load data file===========*/
 	ifstream file;
 	file.open(dataname.c_str(),ios::binary);
 	if(!file.is_open())
 	{
-		clog<<"Error load localdatafile. Check if you are runing in root/sudo.If this is your first time to run the program.Please update first."<<endl;;
-		exit(2002);
+		return 2002;
 	}
 	version=-1;
 	file.read((char*)&version,sizeof(int));
 	if(version!=dv)
 	{
-		clog<<"Error data file version. Please update"<<endl;
-		exit(2003);
+		file.close();
+		return 2003;
+	}
+	file.close();
+	return 0;
+}
+int datafile::loadfile()
+{
+	int report=checkfile();
+	reset();
+	ifstream file;
+	file.open(dataname.c_str(),ios::binary);
+	file.read((char*)&version,sizeof(int));
+	switch(report)
+	{
+		case 2002:
+			clog<<"Error load localdatafile. Check if you are runing in root/sudo.If this is your first time to run the program.Please update first."<<endl;
+			exit(2002);
+			break;
+		case 2003:
+			clog<<"Error data file version. Please update"<<endl;
+			exit(2001);
+			break;
 	}
 	for(int i=0;i<datanumber;i++)file.read((char*)&length[i],sizeof(int));
 	int cache=0;
@@ -112,6 +131,7 @@ int datafile::loadfile()
 
 int datafile::update()
 {
+	if(checkfile()==0)loadfile();
 	HttpClient *client;
 	client=HttpClient_New();
 	string url;

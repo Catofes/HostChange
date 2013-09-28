@@ -25,7 +25,8 @@ class datafile
 
 		datafile();
 		~datafile();
-
+		
+		int checkfile();
 		int savefile();
 		int loadfile();
 		int update();
