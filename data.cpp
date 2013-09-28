@@ -126,11 +126,12 @@ int datafile::update()
 	{
 		clog<<"SmartHost_Beijing Update Error"<<endl;
 		clog<<error<<endl;
-		exit(3001);
+		//exit(3001);
+	}else{
+		cout<<"SmartHost_Beijing Update OK"<<endl;
+		smarthost_beijing.clear();
+		smarthost_beijing+=HttpClient_ResponseText(client);
 	}
-	else cout<<"SmartHost_Beijing Update OK"<<endl;
-	smarthost_beijing.clear();
-	smarthost_beijing+=HttpClient_ResponseText(client);
 	//Smarthost_US
 	url="https://smarthosts.googlecode.com/svn/trunk/hosts_us";
 	HttpClient_Init(client);
@@ -140,11 +141,12 @@ int datafile::update()
 	{   
 		clog<<"SmartHost_Beijing Update Error"<<endl;
 		clog<<error<<endl;
-		exit(3001);
-	}   
-	else cout<<"SmartHost_US Update OK"<<endl;
-	smarthost_us.clear();
-	smarthost_us+=HttpClient_ResponseText(client);
+		//exit(3001);
+	}else{
+		cout<<"SmartHost_US Update OK"<<endl;
+		smarthost_us.clear();
+		smarthost_us+=HttpClient_ResponseText(client);
+	}
 	//imoutohost
 	url="https://imoutohost.googlecode.com/git/imouto.host.txt";
 	HttpClient_Init(client);
@@ -152,13 +154,14 @@ int datafile::update()
 	error=HttpClient_GetError(client);
 	if(error!=0)
 	{   
-		clog<<"SmartHost_Beijing Update Error"<<endl;
+		clog<<"Imoutohost Update Error"<<endl;
 		clog<<error<<endl;
-		exit(3001);
-	}   
-	else cout<<"Imoutohost Update OK"<<endl;
-	imoutohost.clear();
-	imoutohost+=HttpClient_ResponseText(client);
+		//exit(3001);
+	}else{
+		cout<<"Imoutohost Update OK"<<endl;
+		imoutohost.clear();
+		imoutohost+=HttpClient_ResponseText(client);
+	}
 	//ninehost
 	url="http://moe9.tk/Xction/9Hosts/Static/Linux";
 	HttpClient_Init(client);
@@ -166,13 +169,14 @@ int datafile::update()
 	error=HttpClient_GetError(client);
 	if(error!=0)
 	{   
-		clog<<"SmartHost_Beijing Update Error"<<endl;
+		clog<<"9host Update Error"<<endl;
 		clog<<error<<endl;
-		exit(3001);
-	}   
-	else cout<<"9host Update OK"<<endl;
-	ninehost.clear();
-	ninehost+=HttpClient_ResponseText(client);
+		//exit(3001);
+	}else{
+		cout<<"9host Update OK"<<endl;
+		ninehost.clear();
+		ninehost+=HttpClient_ResponseText(client);
+	}
 	/*=================================================*/
 	length[0]=smarthost_us.size();
 	length[1]=smarthost_beijing.size();

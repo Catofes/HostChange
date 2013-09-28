@@ -73,6 +73,7 @@ int main(int argc, char **argv)
 	argv ++;
 
 	if (command == "update"){
+		mydata.loadfile();
 		report=mydata.update();
 		mydata.savefile();
 	}else if (command =="set"){
