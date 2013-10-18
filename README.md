@@ -21,6 +21,7 @@ Imouto.host (https://code.google.com/p/imoutohost/)
 	8、点击Settings打开设置，可以检测更新，修改Custom设置等等。
 
 版本：
+
 	1.3.0 加入用户指定网络host文件，下载host文件时使用并行，添加程序的更新检测功能。
 	1.2.0 加入9host，添加About链接
 	1.1.0 加入Imouto.host 修正更新时间显示
