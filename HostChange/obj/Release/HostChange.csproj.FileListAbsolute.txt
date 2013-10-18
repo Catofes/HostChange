@@ -3,8 +3,10 @@ e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\bin\Release\Hos
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\bin\Release\HostChange.pdb
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.csprojResolveAssemblyReference.cache
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.HostChange.resources
-e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.Form2.resources
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.Properties.Resources.resources
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.csproj.GenerateResource.Cache
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.exe
 e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.pdb
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.about.resources
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.Update.resources
+e:\MyDocuments\Visual Studio 2012\Projects\HostChange\HostChange\obj\Release\HostChange.settings.resources
