@@ -135,7 +135,7 @@ namespace HostChange
         public List<string> ninehost;//9host
         public List<string> custom;//custom
         public List<string> backup_2;//no use now
-        public int data_version =3;
+        public int data_version =4;
         public Data()//初始化
         {
             Reset();
@@ -147,14 +147,14 @@ namespace HostChange
             imouto_host = new List<string>();
             ninehost = new List<string>();
             custom = new List<string>();
-            data_version = 3;
+            data_version = 4;
             custom_URL = "";
             custom_enable = false;
             custom_updatedate = "";
             SmartHost_Beijing_URL = "https://smarthosts.googlecode.com/svn/trunk/hosts";
             SmartHost_US_URL = "https://smarthosts.googlecode.com/svn/trunk/hosts_us";
             imouto_host_URL = "https://imoutohost.googlecode.com/git/imouto.host.txt";
-            ninehost_URL = "http://moe9.tk/Xction/9Hosts/Static/Win";
+            ninehost_URL = "http://moe9.tk/Get/UnDe";
             hostchange_version_URL = "https://raw.github.com/Catofes/HostChange/master/version";
             SmartHost_Beijing_OK = false;
             SmartHost_US_OK = false;
@@ -178,7 +178,7 @@ namespace HostChange
         {
             data = new Data();
             Host = new List<string>();
-            data_version = 3;
+            data_version = 4;
             datafile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\HostChange\\HostChange.data";
             LoadLocalData();
         }//初始化
