@@ -183,7 +183,7 @@ int datafile::update()
 		imoutohost+=HttpClient_ResponseText(client);
 	}
 	//ninehost
-	url="http://moe9.tk/Get/CtDe";
+	url="http://moe9.tk/Get/Nightly/Store";
 	HttpClient_Init(client);
 	HttpClient_Get(client,url.c_str());
 	error=HttpClient_GetError(client);
