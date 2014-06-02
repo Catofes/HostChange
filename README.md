@@ -1,5 +1,7 @@
 ﻿HostChange Host 文件更新切换小程序
 
+因为数据来源停止维护，本软件就此停止维护。请使用者自行搜索host并修改源码。
+
 Host数据来源 
 SmartHost (https://code.google.com/p/smarthosts/)
 Imouto.host (https://code.google.com/p/imoutohost/)
